@@ -39,13 +39,11 @@ const TopPage: React.FC = () => {
           </Text>
           <Spacer height={Space * 2} />
           <Box maxWidth="100%" overflowX="scroll" overflowY="hidden">
-            <Flex align="stretch" direction="row" gap={Space * 2} justify="flex-start">
-              {_.map(featureList, (feature) => (
-
+              <Flex align="stretch" direction="row" gap={Space * 2} justify="flex-start">
+                {_.map(featureList, (feature) => (
                   <FeatureCard key={feature.id} bookId={feature.book.id} />
-
-              ))}
-            </Flex>
+                ))}
+              </Flex>
           </Box>
         </Box>
 
@@ -56,14 +54,15 @@ const TopPage: React.FC = () => {
             ランキング
           </Text>
           <Spacer height={Space * 2} />
+
           <Box maxWidth="100%" overflowX="hidden" overflowY="hidden">
-            <Flex align="center" as="ul" direction="column" justify="center">
-              {_.map(rankingList, (ranking) => (
-                <Suspense fallback={<div>Loading...</div>}>
-                  <RankingCard key={ranking.id} bookId={ranking.book.id} />
-                </Suspense>
-              ))}
-            </Flex>
+              <Flex align="center" as="ul" direction="column" justify="center">
+                {_.map(rankingList, (ranking) => (
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <RankingCard key={ranking.id} bookId={ranking.book.id} />
+                  </Suspense>
+                ))}
+              </Flex>
           </Box>
         </Box>
 
@@ -74,15 +73,15 @@ const TopPage: React.FC = () => {
             本日更新
           </Text>
           <Spacer height={Space * 2} />
-          <Box maxWidth="100%" overflowX="scroll" overflowY="hidden">
-            <Flex align="stretch" gap={Space * 2} justify="flex-start">
-              {_.map(release.books, (book) => (
-                <Suspense fallback={<div>Loading...</div>}>
-                  <BookCard key={book.id} bookId={book.id} />
-                </Suspense>
-              ))}
-            </Flex>
-          </Box>
+            <Box maxWidth="100%" overflowX="scroll" overflowY="hidden">
+              <Flex align="stretch" gap={Space * 2} justify="flex-start">
+                {_.map(release.books, (book) => (
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <BookCard key={book.id} bookId={book.id} />
+                  </Suspense>
+                ))}
+              </Flex>
+            </Box>
         </Box>
       </Box>
     </Flex>
