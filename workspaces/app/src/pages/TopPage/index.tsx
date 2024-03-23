@@ -41,9 +41,9 @@ const TopPage: React.FC = () => {
           <Box maxWidth="100%" overflowX="scroll" overflowY="hidden">
             <Flex align="stretch" direction="row" gap={Space * 2} justify="flex-start">
               {_.map(featureList, (feature) => (
-                <Suspense fallback={<div>Loading...</div>}>
+
                   <FeatureCard key={feature.id} bookId={feature.book.id} />
-                </Suspense>
+
               ))}
             </Flex>
           </Box>
