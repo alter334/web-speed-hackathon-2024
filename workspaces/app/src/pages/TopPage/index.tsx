@@ -1,11 +1,11 @@
 import _ from 'lodash';
 import moment from 'moment-timezone';
-import { Suspense, useId } from 'react';
+import React, { Suspense, useId } from 'react';
 
-import { BookCard } from '../../features/book/components/BookCard';
-import { FeatureCard } from '../../features/feature/components/FeatureCard';
+const BookCard = React.lazy(() => import('../../features/book/components/BookCard'));
+const FeatureCard = React.lazy(() => import('../../features/feature/components/FeatureCard'));
 import { useFeatureList } from '../../features/feature/hooks/useFeatureList';
-import { RankingCard } from '../../features/ranking/components/RankingCard';
+const RankingCard = React.lazy(() => import('../../features/ranking/components/RankingCard'));
 import { useRankingList } from '../../features/ranking/hooks/useRankingList';
 import { useRelease } from '../../features/release/hooks/useRelease';
 import { Box } from '../../foundation/components/Box';
@@ -41,7 +41,9 @@ const TopPage: React.FC = () => {
           <Box maxWidth="100%" overflowX="scroll" overflowY="hidden">
             <Flex align="stretch" direction="row" gap={Space * 2} justify="flex-start">
               {_.map(featureList, (feature) => (
-                <FeatureCard key={feature.id} bookId={feature.book.id} />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <FeatureCard key={feature.id} bookId={feature.book.id} />
+                </Suspense>
               ))}
             </Flex>
           </Box>
@@ -57,7 +59,9 @@ const TopPage: React.FC = () => {
           <Box maxWidth="100%" overflowX="hidden" overflowY="hidden">
             <Flex align="center" as="ul" direction="column" justify="center">
               {_.map(rankingList, (ranking) => (
-                <RankingCard key={ranking.id} bookId={ranking.book.id} />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <RankingCard key={ranking.id} bookId={ranking.book.id} />
+                </Suspense>
               ))}
             </Flex>
           </Box>
@@ -73,7 +77,9 @@ const TopPage: React.FC = () => {
           <Box maxWidth="100%" overflowX="scroll" overflowY="hidden">
             <Flex align="stretch" gap={Space * 2} justify="flex-start">
               {_.map(release.books, (book) => (
-                <BookCard key={book.id} bookId={book.id} />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <BookCard key={book.id} bookId={book.id} />
+                </Suspense>
               ))}
             </Flex>
           </Box>
