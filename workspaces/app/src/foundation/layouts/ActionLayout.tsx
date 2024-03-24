@@ -1,10 +1,11 @@
+import React from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Box } from '../components/Box';
 import { Container } from '../components/Container';
 import { Flex } from '../components/Flex';
-import { Footer } from '../components/Footer';
+const Footer = React.lazy(() => import('../components/Footer'));
 import { Color, Space } from '../styles/variables';
 
 const _Header = styled.header`

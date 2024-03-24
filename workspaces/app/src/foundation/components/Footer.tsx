@@ -1,5 +1,5 @@
 import { useSetAtom } from 'jotai';
-import React, { useId } from 'react';
+import React, { Suspense, useId } from 'react';
 import styled from 'styled-components';
 
 import { DialogContentAtom } from '../atoms/DialogContentAtom';
@@ -24,7 +24,7 @@ const _Content = styled.section`
   white-space: pre-line;
 `;
 
-export const Footer: React.FC = () => {
+const Footer: React.FC = () => {
   const [isClient, setIsClient] = React.useState(false);
 
   React.useEffect(() => {
@@ -134,3 +134,13 @@ export const Footer: React.FC = () => {
     </Box>
   );
 };
+
+const FooterWithSuspense: React.FC = () => {
+  return (
+    <Suspense fallback={null}>
+      <Footer />
+    </Suspense>
+  );
+};
+
+export default FooterWithSuspense;

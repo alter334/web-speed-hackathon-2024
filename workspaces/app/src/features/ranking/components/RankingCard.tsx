@@ -54,7 +54,7 @@ const RankingCard: React.FC<Props> = ({ bookId }) => {
         <Flex align="flex-start" gap={Space * 2.5} justify="flex-start">
           {imageUrl != null && (
             <_ImgWrapper>
-              <Image alt={book.name} height={96} objectFit="cover" src={imageUrl} width={96} />
+              <Image alt={book.name} height={96} loading="lazy" objectFit="cover" src={imageUrl} width={96} />
             </_ImgWrapper>
           )}
           <Box width="100%">
@@ -105,7 +105,7 @@ const RankingCard: React.FC<Props> = ({ bookId }) => {
 
 const RankingCardWithSuspense: React.FC<Props> = (props) => {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<Spacer height={155} />}>
       <RankingCard {...props} />
     </Suspense>
   );
