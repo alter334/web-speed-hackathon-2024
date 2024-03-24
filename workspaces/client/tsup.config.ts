@@ -7,6 +7,8 @@ import findPackageDir from 'pkg-dir';
 import { defineConfig } from 'tsup';
 import type { Options } from 'tsup';
 
+
+
 export default defineConfig(async (): Promise<Options[]> => {
   const PACKAGE_DIR = (await findPackageDir(process.cwd()))!;
   const WORKSPACE_DIR = (await findWorkspaceDir(process.cwd()))!;
@@ -15,6 +17,7 @@ export default defineConfig(async (): Promise<Options[]> => {
 
   const SEED_IMAGE_DIR = path.resolve(WORKSPACE_DIR, './workspaces/server/seeds/images');
   const IMAGE_PATH_LIST = fs.readdirSync(SEED_IMAGE_DIR).map((file) => `/images/${file}`);
+  
 
   return [
     {
